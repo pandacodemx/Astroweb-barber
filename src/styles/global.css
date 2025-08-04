@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;700&display=swap');
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+h1, h2, h3 {
+  font-family: 'Playfair Display', serif;
+}
+
+/* Animación del poste de barbería */
+.barber-pole {
+  background: linear-gradient(
+    180deg,
+    #ff0000 0%,
+    #ff0000 30%,
+    #ffffff 30%,
+    #ffffff 40%,
+    #0000ff 40%,
+    #0000ff 70%,
+    #ffffff 70%,
+    #ffffff 80%,
+    #ff0000 80%,
+    #ff0000 100%
+  );
+  background-size: 100% 200%;
+  animation: barberPole 3s linear infinite;
+}
+
+@keyframes barberPole {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 100%;
+  }
+}
