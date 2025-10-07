@@ -1,0 +1,54 @@
+---
+import { DeviceMobile, Envelope, Clock  } from "phosphor-react";
+import {CalendarCheck }from "phosphor-react"
+
+---
+
+<section id="services" class="bg-black/50">
+  <div class="container mx-auto px-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+      {
+        (
+          <div class=" p-6">
+            <div class="text-4xl mb-4 text-amber-500">
+              <DeviceMobile size={32} />
+            </div>
+            <h3 class="text-2xl  mb-2 group-hover:text-amber-500 transition-colors">
+              +55 123 58118555
+            </h3>
+            <p class="text-gray-200 mb-4">Agenda tu cita.</p>
+          </div>
+          <div class="bg-gray-950 p-6">
+            <div class="text-4xl mb-4 text-amber-500">
+              <Envelope size={32} />
+            </div>
+            <h3 class="text-2xl  mb-2 group-hover:text-amber-500 transition-colors">
+              correo@barberia.com
+            </h3>
+            <p class="text-gray-200 mb-4">Dudas, sugerencias.</p>
+          </div>
+           <div class=" p-6">
+            <div class="text-4xl mb-4 text-amber-500">
+              <Clock size={32} />
+            </div>
+            <h3 class="text-2xl  mb-2 group-hover:text-amber-500 transition-colors">
+              LUN -VIE: 09:00 - 18:00
+            </h3>
+            <p class="text-gray-200 mb-4">SAB: 09:00 - 13:00</p>
+          </div>
+          <a href="">
+          <div class=" bg-white p-6">
+              <div class="text-4xl mb-4 text-amber-600">
+                <CalendarCheck size={32} />
+              </div>
+              <h3 class="text-2xl  mb-2 text-amber-600">
+                AGENDAR CITA
+              </h3>
+              <p class="text-amber-600 mb-4 font-bold">Revisa y agenda tu cita</p>
+          </div>
+          </a>
+        )
+      }
+    </div>
+  </div>
+</section>

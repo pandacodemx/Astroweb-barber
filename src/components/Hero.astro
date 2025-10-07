@@ -1,14 +1,66 @@
-<section id="home" class="min-h-screen flex items-center justify-center bg-[url('/img/bg.jpeg')] bg-cover bg-center relative">
-    <div class="absolute inset-0 bg-black/60"></div>
-    <div class="container mx-auto px-6 z-10 text-center">
-      <h1 class="text-5xl md:text-7xl font-bold mb-6">
-        <span class="text-amber-500">ESTILO</span> Y TRADICIÓN
-      </h1>
-      <p class="text-xl md:text-2xl mb-8 max-w-2xl mx-auto">
-        Barbería profesional donde el arte del corte clásico se encuentra con las tendencias modernas
-      </p>
-      <a href="#booking" class="bg-amber-600 hover:bg-amber-700 text-white px-8 py-3 rounded-md font-medium transition-colors">
-        Reservar cita
-      </a>
+---
+import "../styles/embla.css";
+---
+
+<section class="relative min-h-[80vh] overflow-hidden">
+  <!-- Slider -->
+  <div class="embla absolute inset-0">
+    <div class="embla__container">
+      <div class="embla__slide">
+        <img
+          src="/img/bg.jpeg"
+          class="w-full h-screen object-cover"
+          alt="Slide 1"
+        />
+      </div>
+      <div class="embla__slide">
+        <img
+          src="/img/bg1.jpeg"
+          class="w-full h-screen object-cover"
+          alt="Slide 2"
+        />
+      </div>
+      <div class="embla__slide">
+        <img
+          src="/img/bg3.jpg"
+          class="w-full h-screen object-cover"
+          alt="Slide 3"
+        />
+      </div>
     </div>
-  </section>
+  </div>
+
+  <!-- Overlay -->
+  <div
+    class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/60"
+  >
+  </div>
+
+  <!-- Contenido -->
+  <div class="container mx-auto px-6 z-10 text-white absolute top-[40%] left-8">
+    <h1
+      class="text-5xl md:text-7xl text-[#ff8450] text-shadow-[2px_1px_3px_#000] mb-6"
+    >
+      ESTILO Y TRADICIÓN
+    </h1>
+    <p class="text-xl font-bold mb-8 max-w-2xl">
+      Barbería profesional donde el arte del corte clásico se encuentra con las
+      tendencias modernas
+    </p>
+    <a
+      href="#booking"
+      class="bg-amber-700 hover:bg-amber-800 text-white px-8 py-3 rounded-md font-bold transition-colors"
+    >
+      👍🏻 Reservar cita
+    </a>
+  </div>
+</section>
+
+<script type="module">
+  window.addEventListener("load", () => {
+    const emblaNode = document.querySelector(".embla");
+    const embla = EmblaCarousel(emblaNode, { loop: true, speed: 6 });
+
+    setInterval(() => embla.scrollNext(), 3000); // autoplay
+  });
+</script>

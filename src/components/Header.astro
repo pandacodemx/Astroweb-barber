@@ -1,4 +1,6 @@
 ---
+import { FacebookLogo, InstagramLogo, YoutubeLogo } from "phosphor-react";
+import { CalendarPlus } from "phosphor-react";
 const navItems = [
   { name: "Inicio", href: "#home" },
   { name: "Servicios", href: "#services" },
@@ -7,19 +9,72 @@ const navItems = [
 ];
 ---
 
-<header class="fixed w-full bg-gray-500/10 backdrop-blur-lg z-50 border-b border-amber-600/20">
+<header
+  class="fixed w-full bg-gray-500/10 backdrop-blur-xs z-50 border-b border-amber-800/20"
+>
   <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-    <a href="#home" class="text-2xl font-bold text-amber-500">BARBER<span class="text-white">VINTAGE</span></a>
-    
+    <a href="#home" class="text-2xl font-bold text-amber-800">
+      <img src="/img/logo_dark.png" alt="" class="w-[155px]" />
+    </a>
+
     <div class="hidden md:flex space-x-8">
-      {navItems.map(item => (
-        <a href={item.href} class="hover:text-amber-500 transition-colors">{item.name}</a>
-      ))}
+      {
+        navItems.map((item) => (
+          <a
+            href={item.href}
+            class="hover:text-amber-500 transition-colors font-extrabold uppercase text-sm"
+          >
+            {item.name}
+          </a>
+        ))
+      }
     </div>
-    
+
+    <div class="hidden md:flex items-center space-x-4">
+      <a
+        href="https://facebook.com"
+        target="_blank"
+        class="hover:text-amber-500 ease-in-out hover:duration-300"
+      >
+        <FacebookLogo size={24} weight="fill" />
+      </a>
+      <a
+        href="https://instagram.com"
+        target="_blank"
+        class="hover:text-amber-500 ease-in-out hover:duration-300"
+      >
+        <InstagramLogo size={24} weight="fill" />
+      </a>
+      <a
+        href="https://instagram.com"
+        target="_blank"
+        class="hover:text-amber-500 ease-in-out hover:duration-300"
+      >
+        <YoutubeLogo size={24} weight="fill" />
+      </a>
+
+      <a
+        href="https://instagram.com"
+        target="_blank"
+        class="hover:text-amber-500 ease-in-out hover:duration-300"
+      >
+        <CalendarPlus size={30} weight="fill" />
+      </a>
+    </div>
+
     <button class="md:hidden">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-6 w-6 fill="
+        none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M4 6h16M4 12h16M4 18h16"></path>
       </svg>
     </button>
   </nav>
