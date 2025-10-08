@@ -1,4 +1,5 @@
 ---
+// src/components/Gallery.astro
 const images = [
   "/images/gallery-1.jpg",
   "/images/gallery-2.jpg",
@@ -6,77 +7,297 @@ const images = [
   "/images/gallery-4.jpg",
   "/images/gallery-5.jpg",
   "/images/gallery-6.jpg",
+  "/images/gallery-1.jpg",
+  "/images/gallery-2.jpg",
 ];
 ---
 
-<section id="gallery" class="py-20 bg-gray-950">
-  <div class="container mx-auto px-6">
+<section id="gallery" class="py-20 bg-gradient-to-br from-gray-900 to-gray-950 relative overflow-hidden">
+  <!-- Elementos decorativos de fondo -->
+  <div class="absolute inset-0 opacity-5">
+    <div class="absolute top-10 left-10 w-32 h-32 bg-amber-500 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-10 right-10 w-40 h-40 bg-purple-600 rounded-full blur-3xl"></div>
+    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-blue-500 rounded-full blur-3xl"></div>
+  </div>
+
+  <div class="container mx-auto px-6 relative z-10">
+    <!-- Encabezado mejorado -->
     <div class="text-center mb-16">
-      <h2 class="text-4xl mb-4 text-amber-500">Nuestro Trabajo</h2>
-      <p class="text-xl font-bold text-gray-300 max-w-2xl mx-auto">
-        La calidad y el detalle son nuestra marca registrada
+      <div class="inline-flex items-center gap-2 text-amber-500 mb-4">
+        <div class="w-8 h-px bg-amber-500"></div>
+        <span class="text-sm font-semibold tracking-widest uppercase">Galería</span>
+        <div class="w-8 h-px bg-amber-500"></div>
+      </div>
+      <h2 class="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-amber-400 to-amber-600 bg-clip-text text-transparent">
+        Nuestro Trabajo
+      </h2>
+      <p class="text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
+        Descubre la excelencia en cada corte. La calidad y el detalle son nuestra 
+        <span class="text-amber-400 font-semibold">marca registrada</span>
       </p>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      {
-        images.map((image) => (
-          <div class="group relative overflow-hidden rounded-lg aspect-square">
-            <img
-              src={image}
-              alt="Trabajo de barbería"
-              class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
-              loading="lazy"
-            />
-            <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-              <button class="bg-amber-600 hover:bg-amber-700 text-white p-3 rounded-full transform translate-y-4 group-hover:translate-y-0 transition-transform">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-6 w-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                  />
-                </svg>
-              </button>
+    <!-- Galería mejorada -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-16" id="galleryGrid">
+      {images.map((image, index) => (
+        <div 
+          class="group relative overflow-hidden rounded-2xl aspect-[4/5] cursor-pointer transform hover:scale-[1.02] transition-all duration-500 ease-out gallery-item"
+          data-index={index}
+        >
+          <!-- Imagen principal -->
+          <img
+            src={image}
+            alt={`Trabajo de barbería ${index + 1}`}
+            class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out"
+            loading="lazy"
+          />
+          
+          <!-- Overlay con gradiente -->
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500">
+            <div class="absolute bottom-0 left-0 right-0 p-6 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+              <div class="flex items-center justify-between">
+                <span class="text-white font-semibold text-lg"></span>
+                <button class="bg-amber-500 hover:bg-amber-600 text-white p-3 rounded-full transform scale-90 group-hover:scale-100 transition-all duration-300 shadow-lg hover:shadow-amber-500/25">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v4l3-3m-3 3l3 3"/>
+                  </svg>
+                </button>
+              </div>
             </div>
           </div>
-        ))
-      }
+
+          <!-- Efecto de brillo al hover -->
+          <div class="absolute inset-0 bg-gradient-to-r from-amber-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 mix-blend-overlay"></div>
+        </div>
+      ))}
     </div>
 
-    <!-- Instagram CTA -->
-    <div
-      class="text-center mt-16 bg-gray-800/50 p-8 rounded-lg border border-gray-700"
-    >
-      <h3 class="text-2xl mb-4">Síguenos en Instagram</h3>
-      <p class="text-gray-400 font-bold mb-6">
-        Para ver más de nuestros trabajos y promociones exclusivas
-      </p>
-      <a
-        href="https://instagram.com/tubarberia"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-flex items-center bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-md font-medium hover:opacity-90 transition-opacity"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-5 w-5 mr-2"
-          fill="currentColor"
-          viewBox="0 0 24 24"
+    <!-- Instagram CTA mejorado -->
+    <div class="text-center relative">
+      <div class="absolute inset-0 bg-gradient-to-r from-amber-500/10 to-purple-500/10 rounded-3xl blur-xl"></div>
+      <div class="relative bg-gray-800/80 backdrop-blur-sm p-12 rounded-2xl border border-gray-700/50">
+        <div class="inline-flex items-center gap-3 text-amber-400 mb-4">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
+          <span class="font-semibold tracking-widest">Síguenos</span>
+        </div>
+        <h3 class="text-3xl text-white mb-4">Más Trabajos en Instagram</h3>
+        <p class="text-gray-300 text-lg mb-8 max-w-md mx-auto leading-relaxed">
+          Descubre contenido exclusivo, promociones especiales y nuestro día a día en la barbería
+        </p>
+        <a
+          href="https://instagram.com/tubarberia"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-3 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-8 py-4 rounded-2xl font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/25"
         >
-          <path
-            d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
-          ></path>
-        </svg>
-        @tuberberia
-      </a>
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
+          @tuberberia
+        </a>
+      </div>
     </div>
   </div>
 </section>
+
+<!-- Modal -->
+<div id="galleryModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/95 backdrop-blur-sm hidden">
+  <div class="relative max-w-6xl max-h-[90vh] w-full">
+    <!-- Botón cerrar -->
+    <button 
+      id="closeModal"
+      class="absolute top-4 right-4 z-20 bg-gray-800/80 hover:bg-gray-700 text-white p-3 rounded-full transition-all duration-300 transform hover:scale-110 hover:rotate-90"
+    >
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+      </svg>
+    </button>
+
+    <!-- Botones navegación -->
+    <button 
+      id="prevImage"
+      class="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 bg-gray-800/80 hover:bg-gray-700 text-white p-4 rounded-full transition-all duration-300 hover:scale-110"
+    >
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+      </svg>
+    </button>
+
+    <button 
+      id="nextImage"
+      class="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 bg-gray-800/80 hover:bg-gray-700 text-white p-4 rounded-full transition-all duration-300 hover:scale-110"
+    >
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+      </svg>
+    </button>
+
+    <!-- Imagen en modal -->
+    <div class="flex items-center justify-center h-full">
+      <img
+        id="modalImage"
+        src=""
+        alt=""
+        class="max-w-full max-h-[80vh] object-contain rounded-2xl shadow-2xl transition-transform duration-500"
+      />
+    </div>
+
+    <!-- Indicadores -->
+    <div id="modalIndicators" class="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-20 flex gap-2">
+      <!-- Los indicadores se generan dinámicamente -->
+    </div>
+
+    <!-- Contador -->
+    <div id="modalCounter" class="absolute top-4 left-4 z-20 bg-gray-800/80 text-white px-3 py-2 rounded-lg text-sm font-semibold">
+      1 / {images.length}
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+// JavaScript para el modal - is:inline para que esté disponible globalmente
+document.addEventListener('DOMContentLoaded', function() {
+  const images = [
+    "/images/gallery-1.jpg",
+    "/images/gallery-2.jpg",
+    "/images/gallery-3.jpg",
+    "/images/gallery-4.jpg",
+    "/images/gallery-5.jpg",
+    "/images/gallery-6.jpg",
+    "/images/gallery-7.jpg",
+    "/images/gallery-8.jpg",
+  ];
+
+  let indiceImagenActual = 0;
+
+  // Elementos del DOM
+  const galleryGrid = document.getElementById('galleryGrid');
+  const modal = document.getElementById('galleryModal');
+  const modalImage = document.getElementById('modalImage');
+  const modalCounter = document.getElementById('modalCounter');
+  const closeModal = document.getElementById('closeModal');
+  const prevImage = document.getElementById('prevImage');
+  const nextImage = document.getElementById('nextImage');
+
+  // Event listeners para las imágenes de la galería
+  if (galleryGrid) {
+    galleryGrid.addEventListener('click', function(e) {
+      const galleryItem = e.target.closest('.gallery-item');
+      if (galleryItem) {
+        const index = parseInt(galleryItem.getAttribute('data-index'));
+        abrirModal(index);
+      }
+    });
+  }
+
+  // Funciones del modal
+  function abrirModal(index) {
+    indiceImagenActual = index;
+    modalImage.src = images[index];
+    modalImage.alt = `Trabajo de barbería ${index + 1}`;
+    modalCounter.textContent = `${index + 1} / ${images.length}`;
+    
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    
+    actualizarIndicadores();
+  }
+
+  function cerrarModal() {
+    modal.classList.add('hidden');
+    document.body.style.overflow = 'auto';
+  }
+
+  function imagenSiguiente() {
+    indiceImagenActual = (indiceImagenActual + 1) % images.length;
+    actualizarModal();
+  }
+
+  function imagenAnterior() {
+    indiceImagenActual = (indiceImagenActual - 1 + images.length) % images.length;
+    actualizarModal();
+  }
+
+  function actualizarModal() {
+    modalImage.src = images[indiceImagenActual];
+    modalImage.alt = `Trabajo de barbería ${indiceImagenActual + 1}`;
+    modalCounter.textContent = `${indiceImagenActual + 1} / ${images.length}`;
+    
+    actualizarIndicadores();
+  }
+
+  function actualizarIndicadores() {
+    const container = document.getElementById('modalIndicators');
+    if (!container) return;
+    
+    container.innerHTML = '';
+    
+    images.forEach((_, index) => {
+      const dot = document.createElement('div');
+      dot.className = `w-3 h-3 rounded-full transition-all duration-300 ${
+        index === indiceImagenActual ? 'bg-amber-500 scale-125' : 'bg-gray-500'
+      }`;
+      container.appendChild(dot);
+    });
+  }
+
+  // Event listeners para los controles del modal
+  if (closeModal) closeModal.addEventListener('click', cerrarModal);
+  if (prevImage) prevImage.addEventListener('click', imagenAnterior);
+  if (nextImage) nextImage.addEventListener('click', imagenSiguiente);
+
+  // Event listener para teclado
+  document.addEventListener('keydown', (event) => {
+    if (modal.classList.contains('hidden')) return;
+    
+    if (event.key === 'Escape') cerrarModal();
+    if (event.key === 'ArrowRight') imagenSiguiente();
+    if (event.key === 'ArrowLeft') imagenAnterior();
+  });
+
+  // Inicializar indicadores
+  actualizarIndicadores();
+});
+</script>
+
+<style>
+/* Tus estilos CSS aquí (los mismos que antes) */
+.animate-fadeIn {
+  animation: fadeIn 0.8s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+img {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+#galleryModal {
+  transition: opacity 0.3s ease;
+}
+
+#galleryModal.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#galleryModal:not(.hidden) {
+  opacity: 1;
+}
+</style>
